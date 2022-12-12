@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <title>Controle de veículos</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Controle de Veiculos</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" href="{% url 'cadastro_motorista' %}">Motoristas</a>
+                        <a class="nav-link" href="{% url 'cadastro_veiculo' %}">Veiculos</a>
+                        <a class="nav-link" href="{% url 'cadastro_controle' %}">Controle</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">	
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+						<th scope="col">#</th>
+						<th scope="col">Veiculo</th>
+						<th scope="col">Motorista</th>
+						<th scope="col">Data Saida</th>
+						<th scope="col">Hora Saida</th>
+						<th scope="col">Destino</th>
+						<th scope="col">Data Retorno</th>
+						<th scope="col">Hora Retorno</th>
+						<th scope="col">KM Retorno</th>
+						<th scope="col">KM Percorrido</th>
+						<th scope="col">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for controle in controles %}
+						<tr>
+							<th scope="row">{{controle.id}}</th>
+							<td>{{controle.veiculo.marca}} {{controle.veiculo.modelo_veiculo}}</td>
+							<td>{{controle.motorista.nome}}</td>
+							<td>{{controle.data_saida}}</td>
+							<td>{{controle.hora_saida}}</td>
+							<td>{{controle.destino}}</td>
+							<td>{{controle.data_retorno}}</td>
+							<td>{{controle.hora_retorno}}</td>
+							<td>{{controle.km_retorno}}</td>
+							<td>{{controle.km_percorrido}}</td>
+							<!-- <td>
+								<a href="">editar</a>
+							</td> -->
+						</tr>
+                    {% endfor %}
+                  </tbody>    
+            </table>
+        </div>
+        <a class="btn btn-primary" href="{% url 'cadastro_controle' %}" role="button">Adicionar Registro</a>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>
